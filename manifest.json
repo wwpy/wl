@@ -1,0 +1,185 @@
+{
+    "name" : "武聊",
+    "appid" : "__UNI__4379774",
+    "description" : "",
+    "versionName" : "1.0.7",
+    "versionCode" : 107,
+    "transformPx" : false,
+    /* 5+App特有相关 */
+    "app-plus" : {
+        "nvueCompiler" : "uni-app",
+        "usingComponents" : true,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : false,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        /* 模块配置 */
+        "modules" : {
+            "VideoPlayer" : {}
+        },
+        /* 应用发布信息 */
+        "distribute" : {
+            /* android打包配置 */
+            "android" : {
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>"
+                ],
+                "abiFilters" : [ "armeabi-v7a", "arm64-v8a" ],
+                "schemes" : "wwchat",
+                "minSdkVersion" : 20,
+                "targetSdkVersion" : 29
+            },
+            /* ios打包配置 */
+            "ios" : {
+                "UIBackgroundModes" : "audio",
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "请[允许访问所有照片]，以保证在APP中能正常访问相册。如果你使用[选择照片]，则所有未选中的，以及未来新增的照片都将无法在APP访问",
+                    "NSPhotoLibraryAddUsageDescription" : "请[允许访问所有照片]，以保证在APP中能正常访问相册。如果你使用[选择照片]，则所有未选中的，以及未来新增的照片都将无法在APP访问",
+                    "NSMicrophoneUsageDescription" : "如果不允许，你将无法在APP中发送语音消息，或进行音视频通话。",
+                    "NSCameraUsageDescription" : "如果不允许，你将无法在APP中使用摄像头。",
+                    "NSLocationWhenInUseUsageDescription" : "打开定位",
+                    "NSLocationAlwaysUsageDescription" : "总是获取",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "始终允许获取你的位置信息",
+                    "NSMotionUsageDescription" : "需要获取健康数据才能使用计步器"
+                },
+                "urltypes" : "wwchat",
+                "capabilities" : {
+                    "entitlements" : {
+                        "com.apple.developer.associated-domains" : [ "applinks:www.rwx850.cn" ]
+                    }
+                },
+                "idfa" : false
+            },
+            /* SDK配置 */
+            "sdkConfigs" : {
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "2a7c7211d184c27b73b48db7b623c161",
+                        "appkey_android" : "649ecf8b073246001f938ceae80f35e5"
+                    }
+                },
+                "push" : {
+                    "unipush" : {}
+                },
+                "ad" : {},
+                "oauth" : {
+                    "qq" : {
+                        "appid" : "101930287"
+                    },
+                    "univerify" : {},
+                    "apple" : {}
+                },
+                "geolocation" : {
+                    "amap" : {
+                        "__platform__" : [ "ios", "android" ],
+                        "appkey_ios" : "2a7c7211d184c27b73b48db7b623c161",
+                        "appkey_android" : "649ecf8b073246001f938ceae80f35e5"
+                    }
+                },
+                "payment" : {
+                    "appleiap" : {}
+                },
+                "share" : {
+                    "qq" : {
+                        "appid" : "101930287"
+                    }
+                },
+                "speech" : {
+                    "ifly" : {}
+                }
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                },
+                "ios" : {
+                    "appstore" : "unpackage/res/icons/1024x1024.png",
+                    "ipad" : {
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    }
+                }
+            }
+        },
+        "compilerVersion" : 3,
+        "renderer" : "native",
+        "nativePlugins" : {
+            "WWPY-UniPlugin" : {
+                "__plugin_info__" : {
+                    "name" : "WWPYUniPlugin",
+                    "description" : "原生插件方法和组件",
+                    "platforms" : "Android,iOS",
+                    "url" : "",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "",
+                    "isCloud" : false,
+                    "bought" : -1,
+                    "pid" : "",
+                    "parameters" : {}
+                }
+            }
+        }
+    },
+    /* 快应用特有相关 */
+    "quickapp" : {},
+    /* 小程序特有相关 */
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : false
+        },
+        "usingComponents" : true
+    },
+    "mp-alipay" : {
+        "usingComponents" : true
+    },
+    "mp-baidu" : {
+        "usingComponents" : true
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true
+    },
+    "h5" : {
+        "devServer" : {
+            "https" : false,
+            "proxy" : {
+                "/api" : {
+                    "target" : "https://chat.rwx850.cn/",
+                    "changeOrigin" : true,
+                    "ws" : true,
+                    "pathRewrite" : {
+                        "^/api" : ""
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+<template>
+	<view>
+		<!-- 导航栏 -->
+		<free-nav-bar title="隐私政策" showBack :showRight="false"></free-nav-bar>
+		
+		<web-view class=""
+		src="https://www.rwx850.cn/secret/policy_chat.html"
+		style="width: 400px;height: 800px;"></web-view>
+	</view>
+</template>
+
+<script>
+	import freeNavBar from "@/components/free-ui/free-nav-bar.vue"
+	
+	export default {
+		components: {
+			freeNavBar,
+		},
+		data() {
+			return {
+				
+			}
+		},
+		methods: {
+			
+		}
+	}
+</script>
+
+<style>
+
+</style>

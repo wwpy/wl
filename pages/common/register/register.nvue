@@ -1,0 +1,158 @@
+<template>
+	<view>
+		<view class="mt-5 ml-3">
+			<text class="font-llg text-hover-secondary">填写资料</text>
+		</view>
+		<view class="flex-column align-center">
+			<image :src="userBind.avatarUrl" class="rounded-circle" style="width: 80px;height: 80px;"></image>
+			<view class="flex mt-2">
+				<view :style="{'background-color':selected===1?'#333fff':'#ffffff'}"
+				class="justify-center align-center mr-2 rounded-circle border" 
+				style="width: 60px;height: 60px;"
+				@click="setSex(1)">
+					<image src="/static/images/reg/male.png" style="width: 40px;height: 40px;"></image>
+				</view>
+				<view :style="{'background-color':selected===2?'#333fff':'#ffffff'}"
+				class="justify-center align-center ml-2 rounded-circle border" 
+				style="width: 60px;height: 60px;"
+				@click="setSex(2)">
+					<image src="/static/images/reg/female.png" style="width: 40px;height: 40px;"></image>
+				</view>
+			</view>
+			<view class="flex mt-2 mx-5" style="width: 500rpx;">
+				<input type="text" v-model="user.userName" 
+				placeholder="请输入昵称" 
+				class="flex-1 border-bottom pl-2"
+				style="height: 60rpx;"/>
+			</view>
+			
+			<view class="flex mt-2 mx-5" style="width: 500rpx;">
+				<view class="flex-1 border-bottom" style="height: 60rpx;">
+					<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+						<text>{{date}}</text>
+					</picker>
+				</view>
+			</view>
+			<view class="flex mt-2 mx-5" style="width: 500rpx;">
+				<view class="flex-1 border-bottom" style="height: 60rpx;">
+					<text>{{userInfo.area}}</text>
+				</view>
+			</view>
+		</view>
+		<view class="mt-3 mx-5" style="height: 40px;">
+			<button class="bg-danger flex-1 rounded-circle" @click="submit" :loading="loading">
+				<text class="text-white">{{loading ? '提交中...' : '确定'}}</text>
+			</button>
+		</view>
+	</view>
+</template>
+
+<script>
+	import $H from '@/common/free-lib/request.js';
+	import $T from '@/common/free-lib/time.js'
+	
+	export default {
+		data() {
+			return {
+				loading:false,
+				selected: 1,
+				date: '',
+				user: {
+					userName: '',
+				},
+				userBind: {
+					provider: '',
+					openid: '',
+					unionid: '',
+					expires_in: 0,
+					nickName: '',
+					avatarUrl: '/static/logo.png',
+					birthday: ''
+				},
+				userInfo: {
+					sex: 1,
+					age: 18,
+					area: ''
+				}
+			}
+		},
+		onReady() {
+			this.date = this.getDate('current')
+			this.getLocation()
+			this.userInfo.birthday = this.date;
+			var birthday = $T.getAgeByBirthday(this.date)
+			this.userInfo.age = birthday
+		},
+		onLoad(options) {
+			this.userBind = JSON.parse(options.userBind);
+			this.user.userName = this.userBind.nickName;
+		},
+		computed: {
+			startDate() {
+				return this.getDate('start');
+			},
+			endDate() {
+				return this.getDate('end');
+			}
+		},
+		methods: {
+			setSex(index) { // 选择性别
+				this.selected = index
+				this.userInfo.sex = this.selected
+			},
+			bindDateChange(e) { // 选择出生日期
+				this.date = e.detail.value
+				this.userInfo.birthday = this.date;
+				var birthday = $T.getAgeByBirthday(this.date)
+				this.userInfo.age = birthday
+			},
+			getLocation() { // 获取当前地址
+				uni.getLocation({
+				    type: 'gcj02',
+					geocode: true,
+				    success: (res) => {
+						var address = res.address
+						this.userInfo.area = `${address.province}-${address.city}-${address.district}`
+				    }
+				});
+			},
+			getDate(type) { // 格式化时间
+				const date = new Date();
+				let year = date.getFullYear();
+				let month = date.getMonth() + 1;
+				let day = date.getDate();
+	
+				if (type === 'start') {
+					year = year - 60;
+				} else if (type === 'end') {
+					year = year + 0;
+				} else if (type === 'current') {
+					year = year - 18;
+				}
+				month = month > 9 ? month : '0' + month;;
+				day = day > 9 ? day : '0' + day;
+				return `${year}-${month}-${day}`;
+			},
+			submit() { // 提交注册登录
+				var formData = {...this.user,...this.userBind,...this.userInfo}
+				// 提交后端
+				this.loading = true
+				$H.post('/otherRegister', formData, {token:false})
+				.then(res=>{
+					this.loading = false
+					this.$store.dispatch('login',res)
+					uni.switchTab({
+						url:"/pages/tabbar/index/index"
+					})
+				}).catch(err=>{
+					// 登录失败
+					this.loading = false
+				})
+			}
+		}// end methods
+	}
+</script>
+
+<style>
+
+</style>

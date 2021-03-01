@@ -1,0 +1,7 @@
+{  
+    "uni_modules": {  
+        "encrypt": [ // 配置要加密的文件  
+            "uniCloud/cloudfunctions/one_key_login/index.js"  
+        ]  
+    }  
+}
