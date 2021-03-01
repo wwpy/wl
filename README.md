@@ -1,4 +1,4 @@
-# 吾聊
+# 武聊
 
 最新修改 开源项目
 
@@ -6,7 +6,7 @@
 
 App端调整可以做代理之间的聊天系统。
 
-> 吾聊是一套基于uniapp+uniCloud+node.js  websocket之间通讯
+> 武聊是一套基于uniapp+uniCloud+node.js  websocket之间通讯
 >
 > 纯nvue项目开发的聊天软件，发送文字和语音，动态朋友圈，
 >
